@@ -1,0 +1,51 @@
+man(Cliegg).
+man(Ruweee).
+man(Owen).
+man(Anakin).
+man(Bail).
+man(ObiWan).
+man(Luke).
+man(Han).
+man(Kylo).
+
+
+woman(Shmi).
+woman(Jobal).
+woman(Beru).
+woman(Padme).
+woman(Breha).
+woman(Leia).
+woman(Rey).
+
+parent(Cliegg, Anakin).
+parent(Shmi, Anakin).
+parent(Ruweee, Padme).
+parent(Jobal, Padme).
+parent(Owen, Luke).
+parent(Beru, Luke).
+parent(Anakin, Luke).
+parent(Padme, Luke).
+parent(Anakin, Leia).
+parent(Padme, Leia).
+parent(Bail, Leia).
+parent(Breha, Leia).
+parent(Luke, Rey).
+parent(Leia, Kylo).
+parent(Han, Kylo).
+
+
+sibling(Luke, Leia).
+
+S
+    
+grandparent(Grandparent, Grandchild) :- parent(Grandparent, X), parent(X, Grandchild).
+grandmother(Gm, Gc):- grandparent(Gm, Gc), woman(Gm).
+grandfather(Gf, Gc):- grandparent(Gf, Gc), man(Gf).
+uncle(U, N):- man(U), brother(U, X), parent(X, N).
+aunt(A, N):- woman(A), sister(A, X), parent(X, N).
+nibling(UncleAunt, Nibling):- uncle(UncleAunt, Nibling), aunt(UncleAunt, Nibling).
+cousin(X,Y):- nibling(UA, X), parent(UA, Y).
+brother(X,Y):- man(X), sibling(X,Y).
+sister(X,Y):- woman(x), sibling(X,Y).
+spouse(X,Y).
+
